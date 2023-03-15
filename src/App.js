@@ -6,6 +6,22 @@ function App() {
   const [date, setDate] = useState("");
   const [tasks, setTasks] = useState([]);
 
+  const att = ()=> {
+    setTasks([
+      {task:task, describe: describe, date: date},
+      ...tasks
+    ])
+    console.log(tasks)
+  }
+  
+  //setTasks(([prevState]) => {
+    //return {...prevState, task: task, describe: describe, date: date}
+  //})
+  //console.log(tasks)
+
+  const clear = () => {
+    setTasks([])
+  }
   return (
     <main>
       <div>
@@ -17,7 +33,21 @@ function App() {
         />
 
         <input value={date} onChange={(event) => setDate(event.target.value)} />
+        <button onClick={att}>add task</button>
+        <button onClick={clear}>Clear tasks</button>
       </div>
+        {
+          tasks.map(task => 
+            (
+              <div>
+                <p>{task.task}</p>
+                <p>{task.describe}</p>
+                <p>{task.date}</p>
+              </div>
+              
+            ) 
+        )
+        }
     </main>
   );
 }
